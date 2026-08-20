@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAKYDIA</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;600;800&display=swap');
+:root{--green:#39ff14;--green2:#00c853;--black:#030504;--dim:#071008}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--black);color:var(--green);font-family:'Share Tech Mono',monospace}
+body{display:flex;align-items:center;justify-content:center;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(rgba(57,255,20,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,20,.025) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to bottom,transparent,#000 20%,#000 80%,transparent)}
+.scan{position:fixed;inset:0;pointer-events:none;background:linear-gradient(transparent 0%,rgba(57,255,20,.035) 50%,transparent 100%);height:10vh;animation:scan 5s linear infinite}
+@keyframes scan{from{transform:translateY(-15vh)}to{transform:translateY(110vh)}}
+
+@media (prefers-reduced-motion: reduce) {
+  .scan, .dot { animation: none; }
+}
+
+main{width:min(900px,92vw);padding:38px 0;position:relative}
+header{border-left:3px solid var(--green);padding:4px 0 4px 18px;margin-bottom:34px}
+.kicker{font-size:12px;letter-spacing:4px;opacity:.65}
+h1{font:800 clamp(25px,6vw,52px)/1 'Orbitron',sans-serif;letter-spacing:5px;margin:10px 0 0;text-shadow:0 0 12px var(--green)}
+.panel{border:1px solid rgba(57,255,20,.45);background:rgba(3,5,4,.88);padding:clamp(22px,5vw,44px);box-shadow:0 0 30px rgba(57,255,20,.08),inset 0 0 30px rgba(57,255,20,.025);position:relative}
+.panel:before,.panel:after{content:"";position:absolute;width:28px;height:28px;border-color:var(--green);border-style:solid}
+.panel:before{top:-1px;left:-1px;border-width:2px 0 0 2px}.panel:after{right:-1px;bottom:-1px;border-width:0 2px 2px 0}
+.status{font-size:11px;letter-spacing:3px;margin-bottom:24px;display:flex;gap:12px;align-items:center}.dot{width:7px;height:7px;background:var(--green);box-shadow:0 0 10px var(--green);animation:blink 1.2s infinite}@keyframes blink{50%{opacity:.25}}
+
+.riddle{font-size:clamp(16px,2.4vw,21px);line-height:1.8;letter-spacing:.5px;word-break:break-word;color:#d8ffd1;min-height:150px;white-space:pre-line}
+.locked{filter:blur(1.5px);opacity:.82}
+.form{display:flex;gap:10px;margin-top:32px}
+input{flex:1;min-width:0;background:#020302;border:1px solid rgba(57,255,20,.55);color:var(--green);font:18px 'Share Tech Mono';padding:16px;outline:none;text-transform:uppercase;box-shadow:inset 0 0 15px rgba(57,255,20,.04)}
+input:focus{border-color:var(--green);box-shadow:0 0 16px rgba(57,255,20,.16)}
+button{background:var(--green);color:#020302;border:0;padding:0 25px;font:800 15px 'Orbitron';letter-spacing:2px;cursor:pointer;transition:.15s}
+button:hover{box-shadow:0 0 22px rgba(57,255,20,.55);transform:translateY(-1px)}
+button:disabled{opacity:.55;cursor:wait}
+.feedback{height:24px;margin-top:12px;font-size:12px;letter-spacing:2px}
+.success{color:var(--green)}.error{color:#ff3b3b}
+footer{margin-top:18px;display:flex;justify-content:space-between;gap:15px;font-size:10px;opacity:.45;letter-spacing:2px}
+@media(max-width:600px){.form{flex-direction:column}button{height:52px}.riddle{font-size:15px;line-height:1.7}}
+.riddle-hint {
+  font-size: clamp(14px, 2vw, 18px);
+  line-height: 1.7;
+  color: #a3ff95;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+}
+</style>
+</head>
+<body>
+  
+<div class="scan"></div>
+<main>
+<header><div class="kicker">CANAL CRIPTOGRAFADO</div><h1>RAKYDIA</h1></header>
+<p class="riddle-hint">
+ // ARQUIVO #00-INIT<br><br>
+  O caminho começa onde o triângulo se fecha, a trindade solitária que dá início ao sinal. Logo em seguida, o abismo reflete a perfeição de uma queda que se dobra sobre si mesma, repetindo o mesmo ciclo elevado duas vezes consecutivas antes do silêncio. Mas a sequência de números não passa de um mecanismo cego; ela exige a voz do antigo imperador de Roma, aquele que ensinou os alfabetos a darem passos para trás e esconderem seus segredos entre as linhas do tempo. Digite a ordem dos fatos, convoque o nome da cifra e a verdade será revelada.
+</p>
+<section class="panel">
+<div class="status"><span class="dot"></span>TRANSMISSÃO INTERCEPTADA // CIFRA ATIVA</div>
+<div id="riddle" class="riddle locked"></div>
+<form id="decodeForm" class="form">
+<input id="key" autocomplete="off" placeholder="ETAPA 1/4: DIGITE O PRIMEIRO DÍGITO..." aria-label="Chave de descriptografia">
+<button id="submit" type="submit">VALIDAR</button>
+</form>
+<div id="feedback" class="feedback"></div>
+</section>
+<footer><span>SYS::???</span><span>ACCESSO // RESTRITO</span></footer>
+</main>
+
+<script>
+// Texto codificado com segurança em UTF-8 Base64
+const encryptedEncoded = "4oKaIFBST1RPQ09MTyBBVElWQURPOiBDT05FWMODTyBFU1RBQkVMRUNJREEg4oKaCgpPIG11bmRvIGV4dGVyaW9yIGRlc2FiYSBlbSBydcOubmFzICwgbWFzIG8gdmVyZGFkZWlybyBjb2xhcHNvIGFjb250ZWNlIGRvIGxhZG8gZGUgZGVudHJvLiBPIHF1ZSB2b2PDqiBmYXogcXVhbmRvIGFzIHBhcmVkZXMgZGEgc3VhIHByw7NwcmlhIG1lbnRlIHRlbmRlbSBhIHJ1aXI/IFZvY8OqIHNlIGVudHJlZ2EgYW8gY2FvcyBvdSBpbmljaWEgbyBzZXUgRXhwdXJnbz8KCk7DtnMgc29tb3MgbyBQcm90b2NvbG8gUmFreWRpYSAzOTkuIE7Do28gdmllbW9zIHBhcmEgc2VyIGFwZW5hcyBhIHRyaWxoYSBzb25vcmEgZGUgdW1hIGVyYSBkaXN0w7NwaWNhOyBuYXNjZW1vcyBwYXJhIHNlciBvIHNldSBwb250byBkZSBmdWdhLiBPIHNvbSBxdWUgZWNvYSBkbyBhYmlzbW8sIHVtYSB0cmF2ZXNzaWEgZW50cmUgYSBtYWlzIHByb2Z1bmRhIGVzY3VyaWTDo28gZSBvIGxpbWl0ZSBkYSByZWNvbnN0cnXDp8O3by4KCk1hcyBhcyBlbmdyZW5hZ2VucyBkZXN0ZSBwcm90b2NvbG8gc8O3IGZ1bmNpb25hbSBzZSBlc3RpdmVybW9zIGp1bnRvcy4gTsOjbyBidXNjYW1vcyBhcGVuYXMgb3V2aW50ZXMuIEJ1c2NhbW9zIGFsaWFkb3MuCgpBIG5vc3NhIEZyYXRlcm5pZGFkZSBlc3TDoSBjb252b2NhbmRvIHZvY8OqLgoKQXF1aSwgYSBtw7pzaWNhIMOpIGEgbm9zc2EgYXJtYSBkZSBjb21iYXRlIGNvbnRyYSBhIGFwYXRpYSBlIGEgZ2VuZXJvc2lkYWRlIMOpIG8gY29tcGFzc28gcXVlIGRpdGEgb3Mgbm9zc29zIHBhc3Nvcy4gT25kZSBvIHNpc3RlbWEgZmFsaGEsIGEgbm9zc2EgdW5pw6NvIHNlIG1hbmlmZXN0YSwgdHJhbnNmb3JtYW5kbyBvIHNvbSBlbSBzb2xpZGFyaWVkYWRlICBwYXJhIHF1ZW0gbWFpcyBwcmVjaXNhLgoKSXN0byBuw6NvIMOpIHVtIGNvbnZpdGUgcGFyYSBhc3Npc3Rpci4gw4kgdW1hIGNvbnZvY2HDp8OjbyBwYXJhIHBlcnRlbmNlci4KCkBwcjM5OV8=";
+
+// Função de decodificação UTF-8 blindada
+function decodeBase64UTF8(base64Str) {
+  const binaryString = atob(base64Str);
+  const bytes = new Uint8Array(binaryString.length);
+  for (let i = 0; i < binaryString.length; i++) {
+    bytes[i] = binaryString.charCodeAt(i);
+  }
+  return new TextDecoder("utf-8").decode(bytes);
+}
+
+const encrypted = decodeBase64UTF8(encryptedEncoded);
+
+function shiftChar(ch, shift){
+  const c = ch.charCodeAt(0);
+  
+  // Letras Maiúsculas (A-Z)
+  if(c >= 65 && c <= 90) return String.fromCharCode((c - 65 - shift + 26) % 26 + 65);
+  
+  // Letras Minúsculas (a-z)
+  if(c >= 97 && c <= 122) return String.fromCharCode((c - 97 - shift + 26) % 26 + 97);
+  
+  // Dígitos Numéricos (0-9)
+  if(c >= 48 && c <= 57) return String.fromCharCode((c - 48 - shift + 10) % 10 + 48);
+  
+  return ch;
+}
+
+function caesar(text){
+  const digits = [3, 9, 9]; 
+  let pos = 0, out = '';
+  for(const ch of Array.from(text)){
+    // Agora aceita tanto letras quanto números para aplicar o deslocamento
+    if(/^[A-Za-z0-9]$/.test(ch)){
+      out += shiftChar(ch, digits[pos % 3]);
+      pos++;
+    } else {
+      out += ch;
+    }
+  }
+  return out;
+}
+
+const cipherText = caesar(encrypted);
+document.getElementById('riddle').textContent = cipherText;
+
+const sequence = ['3', '9', '9', 'CEZAR'];
+let currentStep = 0;
+
+const inputEl = document.getElementById('key');
+const feedbackEl = document.getElementById('feedback');
+const btnEl = document.getElementById('submit');
+
+document.getElementById('decodeForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const value = inputEl.value.trim().toUpperCase();
+
+  if (value === sequence[currentStep]) {
+    currentStep++;
+    inputEl.value = '';
+
+    if (currentStep < sequence.length) {
+      feedbackEl.textContent = `DÍGITO ACEITO // ETAPA ${currentStep + 1} DE ${sequence.length}`;
+      feedbackEl.className = 'feedback success';
+      inputEl.placeholder = `ETAPA ${currentStep + 1}/${sequence.length}: DIGITE ${sequence[currentStep] === 'CEZAR' ? 'PALAVRA-CHAVE' : 'PRÓXIMO DÍGITO'}...`;
+    } else {
+      feedbackEl.textContent = 'PROTOCOLO DESCRIPTOGRAFADO COM SUCESSO';
+      feedbackEl.className = 'feedback success';
+      inputEl.disabled = true;
+      btnEl.disabled = true;
+
+      const el = document.getElementById('riddle');
+      el.classList.remove('locked');
+      el.textContent = '';
+
+      const characters = Array.from(encrypted);
+      let i = 0;
+      const timer = setInterval(() => {
+        if (i < characters.length) {
+          el.textContent += characters[i++];
+        } else {
+          clearInterval(timer);
+        }
+      }, 8);
+    }
+  } else {
+    currentStep = 0;
+    inputEl.value = '';
+    inputEl.placeholder = 'ETAPA 1/4: DIGITE O PRIMEIRO DÍGITO...';
+    feedbackEl.textContent = 'SEQUÊNCIA INCORRETA // PROTOCOLO REINICIADO';
+    feedbackEl.className = 'feedback error';
+  }
+});
+</script>
+</body>
+</html>
