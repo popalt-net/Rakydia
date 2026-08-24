@@ -70,10 +70,10 @@ footer{margin-top:18px;display:flex;justify-content:space-between;gap:15px;font-
 </main>
 
 <script>
-// Texto codificado com segurança em UTF-8 Base64
+
 const encryptedEncoded = "4oKaIFBST1RPQ09MTyBBVElWQURPOiBDT05FWMODTyBFU1RBQkVMRUNJREEg4oKaCgpPIG11bmRvIGV4dGVyaW9yIGRlc2FiYSBlbSBydcOubmFzICwgbWFzIG8gdmVyZGFkZWlybyBjb2xhcHNvIGFjb250ZWNlIGRvIGxhZG8gZGUgZGVudHJvLiBPIHF1ZSB2b2PDqiBmYXogcXVhbmRvIGFzIHBhcmVkZXMgZGEgc3VhIHByw7NwcmlhIG1lbnRlIHRlbmRlbSBhIHJ1aXI/IFZvY8OqIHNlIGVudHJlZ2EgYW8gY2FvcyBvdSBpbmljaWEgbyBzZXUgRXhwdXJnbz8KCk7DtnMgc29tb3MgbyBQcm90b2NvbG8gUmFreWRpYSAzOTkuIE7Do28gdmllbW9zIHBhcmEgc2VyIGFwZW5hcyBhIHRyaWxoYSBzb25vcmEgZGUgdW1hIGVyYSBkaXN0w7NwaWNhOyBuYXNjZW1vcyBwYXJhIHNlciBvIHNldSBwb250byBkZSBmdWdhLiBPIHNvbSBxdWUgZWNvYSBkbyBhYmlzbW8sIHVtYSB0cmF2ZXNzaWEgZW50cmUgYSBtYWlzIHByb2Z1bmRhIGVzY3VyaWTDo28gZSBvIGxpbWl0ZSBkYSByZWNvbnN0cnXDp8O3by4KCk1hcyBhcyBlbmdyZW5hZ2VucyBkZXN0ZSBwcm90b2NvbG8gc8O3IGZ1bmNpb25hbSBzZSBlc3RpdmVybW9zIGp1bnRvcy4gTsOjbyBidXNjYW1vcyBhcGVuYXMgb3V2aW50ZXMuIEJ1c2NhbW9zIGFsaWFkb3MuCgpBIG5vc3NhIEZyYXRlcm5pZGFkZSBlc3TDoSBjb252b2NhbmRvIHZvY8OqLgoKQXF1aSwgYSBtw7pzaWNhIMOpIGEgbm9zc2EgYXJtYSBkZSBjb21iYXRlIGNvbnRyYSBhIGFwYXRpYSBlIGEgZ2VuZXJvc2lkYWRlIMOpIG8gY29tcGFzc28gcXVlIGRpdGEgb3Mgbm9zc29zIHBhc3Nvcy4gT25kZSBvIHNpc3RlbWEgZmFsaGEsIGEgbm9zc2EgdW5pw6NvIHNlIG1hbmlmZXN0YSwgdHJhbnNmb3JtYW5kbyBvIHNvbSBlbSBzb2xpZGFyaWVkYWRlICBwYXJhIHF1ZW0gbWFpcyBwcmVjaXNhLgoKSXN0byBuw6NvIMOpIHVtIGNvbnZpdGUgcGFyYSBhc3Npc3Rpci4gw4kgdW1hIGNvbnZvY2HDp8OjbyBwYXJhIHBlcnRlbmNlci4KCkBwcjM5OV8=";
 
-// Função de decodificação UTF-8 blindada
+
 function decodeBase64UTF8(base64Str) {
   const binaryString = atob(base64Str);
   const bytes = new Uint8Array(binaryString.length);
@@ -139,11 +139,10 @@ const btnEl = document.getElementById('submit');
 document.getElementById('decodeForm').addEventListener('submit', e => {
   e.preventDefault();
 
-  // trim remove espaços extras
-  // toLowerCase garante que CESAR, cesar, Cesar etc. sejam aceitos
+ 
   const value = inputEl.value.trim().toLowerCase();
 
-  // Decodifica e normaliza a chave da etapa atual
+  
   const expectedValue = decodeBase64UTF8(
     encryptedKeys[currentStep]
   ).toLowerCase();
@@ -201,8 +200,7 @@ document.getElementById('decodeForm').addEventListener('submit', e => {
 
   } else {
 
-    // Mantém a lógica sequencial:
-    // qualquer erro reinicia o protocolo
+   
     currentStep = 0;
 
     inputEl.value = '';
