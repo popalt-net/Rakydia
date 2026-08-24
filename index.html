@@ -104,7 +104,6 @@ function caesar(text){
   const digits = [3, 9, 9]; 
   let pos = 0, out = '';
   for(const ch of Array.from(text)){
-    // Agora aceita tanto letras quanto números para aplicar o deslocamento
     if(/^[A-Za-z0-9]$/.test(ch)){
       out += shiftChar(ch, digits[pos % 3]);
       pos++;
@@ -118,7 +117,19 @@ function caesar(text){
 const cipherText = caesar(encrypted);
 document.getElementById('riddle').textContent = cipherText;
 
-const sequence = ['3', '9', '9', 'CEZAR'];
+
+const encryptedKeys = [
+  "Mw==",
+  "OQ==",
+  "OQ==",
+  "Y2VzYXI="
+];
+
+
+const sequence = encryptedKeys.map(key => 
+  decodeBase64UTF8(key).toUpperCase()
+);
+
 let currentStep = 0;
 
 const inputEl = document.getElementById('key');
@@ -127,41 +138,81 @@ const btnEl = document.getElementById('submit');
 
 document.getElementById('decodeForm').addEventListener('submit', e => {
   e.preventDefault();
-  const value = inputEl.value.trim().toUpperCase();
 
-  if (value === sequence[currentStep]) {
+  // trim remove espaços extras
+  // toLowerCase garante que CESAR, cesar, Cesar etc. sejam aceitos
+  const value = inputEl.value.trim().toLowerCase();
+
+  // Decodifica e normaliza a chave da etapa atual
+  const expectedValue = decodeBase64UTF8(
+    encryptedKeys[currentStep]
+  ).toLowerCase();
+
+  if (value === expectedValue) {
     currentStep++;
     inputEl.value = '';
 
-    if (currentStep < sequence.length) {
-      feedbackEl.textContent = `DÍGITO ACEITO // ETAPA ${currentStep + 1} DE ${sequence.length}`;
+    if (currentStep < encryptedKeys.length) {
+
+      const nextKey = decodeBase64UTF8(
+        encryptedKeys[currentStep]
+      );
+
+      feedbackEl.textContent =
+        `CHAVE ACEITA // ETAPA ${currentStep + 1} DE ${encryptedKeys.length}`;
+
       feedbackEl.className = 'feedback success';
-      inputEl.placeholder = `ETAPA ${currentStep + 1}/${sequence.length}: DIGITE ${sequence[currentStep] === 'CEZAR' ? 'PALAVRA-CHAVE' : 'PRÓXIMO DÍGITO'}...`;
+
+      inputEl.placeholder =
+        `ETAPA ${currentStep + 1}/${encryptedKeys.length}: DIGITE ${
+          nextKey.toLowerCase() === 'cesar'
+            ? 'PALAVRA-CHAVE'
+            : 'PRÓXIMO DÍGITO'
+        }...`;
+
     } else {
-      feedbackEl.textContent = 'PROTOCOLO DESCRIPTOGRAFADO COM SUCESSO';
+
+      feedbackEl.textContent =
+        'PROTOCOLO DESCRIPTOGRAFADO COM SUCESSO';
+
       feedbackEl.className = 'feedback success';
+
       inputEl.disabled = true;
       btnEl.disabled = true;
 
       const el = document.getElementById('riddle');
+
       el.classList.remove('locked');
       el.textContent = '';
 
       const characters = Array.from(encrypted);
       let i = 0;
+
       const timer = setInterval(() => {
+
         if (i < characters.length) {
           el.textContent += characters[i++];
         } else {
           clearInterval(timer);
         }
+
       }, 8);
     }
+
   } else {
+
+    // Mantém a lógica sequencial:
+    // qualquer erro reinicia o protocolo
     currentStep = 0;
+
     inputEl.value = '';
-    inputEl.placeholder = 'ETAPA 1/4: DIGITE O PRIMEIRO DÍGITO...';
-    feedbackEl.textContent = 'SEQUÊNCIA INCORRETA // PROTOCOLO REINICIADO';
+
+    inputEl.placeholder =
+      'ETAPA 1/4: DIGITE O PRIMEIRO DÍGITO...';
+
+    feedbackEl.textContent =
+      'SEQUÊNCIA INCORRETA // PROTOCOLO REINICIADO';
+
     feedbackEl.className = 'feedback error';
   }
 });
