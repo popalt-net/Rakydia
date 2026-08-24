@@ -51,9 +51,7 @@ body:before {
             rgba(57,255,20,.025) 1px,
             transparent 1px
         );
-
     background-size: 34px 34px;
-
     mask-image:
         linear-gradient(
             to bottom,
@@ -68,14 +66,12 @@ body:before {
     position: fixed;
     inset: 0;
     pointer-events: none;
-
     background:
         linear-gradient(
             transparent 0%,
             rgba(57,255,20,.035) 50%,
             transparent 100%
         );
-
     height: 10vh;
     animation: scan 5s linear infinite;
 }
@@ -120,38 +116,27 @@ h1 {
         800 clamp(25px, 6vw, 52px)/1
         'Orbitron',
         sans-serif;
-
     letter-spacing: 5px;
     margin: 10px 0 0;
-
-    text-shadow:
-        0 0 12px var(--green);
+    text-shadow: 0 0 12px var(--green);
 }
 
 .panel {
     border: 1px solid rgba(57,255,20,.45);
-
-    background:
-        rgba(3,5,4,.88);
-
+    background: rgba(3,5,4,.88);
     padding: clamp(22px, 5vw, 44px);
-
     box-shadow:
         0 0 30px rgba(57,255,20,.08),
         inset 0 0 30px rgba(57,255,20,.025);
-
     position: relative;
 }
 
 .panel:before,
 .panel:after {
     content: "";
-
     position: absolute;
-
     width: 28px;
     height: 28px;
-
     border-color: var(--green);
     border-style: solid;
 }
@@ -159,38 +144,29 @@ h1 {
 .panel:before {
     top: -1px;
     left: -1px;
-
     border-width: 2px 0 0 2px;
 }
 
 .panel:after {
     right: -1px;
     bottom: -1px;
-
     border-width: 0 2px 2px 0;
 }
 
 .status {
     font-size: 11px;
     letter-spacing: 3px;
-
     margin-bottom: 24px;
-
     display: flex;
     gap: 12px;
-
     align-items: center;
 }
 
 .dot {
     width: 7px;
     height: 7px;
-
     background: var(--green);
-
-    box-shadow:
-        0 0 10px var(--green);
-
+    box-shadow: 0 0 10px var(--green);
     animation: blink 1.2s infinite;
 }
 
@@ -203,15 +179,10 @@ h1 {
 .riddle {
     font-size: clamp(16px, 2.4vw, 21px);
     line-height: 1.8;
-
     letter-spacing: .5px;
-
     word-break: break-word;
-
     color: #d8ffd1;
-
     min-height: 150px;
-
     white-space: pre-line;
 }
 
@@ -222,75 +193,42 @@ h1 {
 
 .form {
     display: flex;
-
     gap: 10px;
-
     margin-top: 32px;
 }
 
 input {
     flex: 1;
-
     min-width: 0;
-
     background: #020302;
-
-    border:
-        1px solid
-        rgba(57,255,20,.55);
-
+    border: 1px solid rgba(57,255,20,.55);
     color: var(--green);
-
-    font:
-        18px
-        'Share Tech Mono';
-
+    font: 18px 'Share Tech Mono';
     padding: 16px;
-
     outline: none;
-
     text-transform: uppercase;
-
-    box-shadow:
-        inset 0 0 15px
-        rgba(57,255,20,.04);
+    box-shadow: inset 0 0 15px rgba(57,255,20,.04);
 }
 
 input:focus {
     border-color: var(--green);
-
-    box-shadow:
-        0 0 16px
-        rgba(57,255,20,.16);
+    box-shadow: 0 0 16px rgba(57,255,20,.16);
 }
 
 button {
     background: var(--green);
-
     color: #020302;
-
     border: 0;
-
     padding: 0 25px;
-
-    font:
-        800 15px
-        'Orbitron';
-
+    font: 800 15px 'Orbitron';
     letter-spacing: 2px;
-
     cursor: pointer;
-
     transition: .15s;
 }
 
 button:hover {
-    box-shadow:
-        0 0 22px
-        rgba(57,255,20,.55);
-
-    transform:
-        translateY(-1px);
+    box-shadow: 0 0 22px rgba(57,255,20,.55);
+    transform: translateY(-1px);
 }
 
 button:disabled {
@@ -300,11 +238,8 @@ button:disabled {
 
 .feedback {
     height: 24px;
-
     margin-top: 12px;
-
     font-size: 12px;
-
     letter-spacing: 2px;
 }
 
@@ -318,34 +253,23 @@ button:disabled {
 
 footer {
     margin-top: 18px;
-
     display: flex;
-
     justify-content: space-between;
-
     gap: 15px;
-
     font-size: 10px;
-
     opacity: .45;
-
     letter-spacing: 2px;
 }
 
 .riddle-hint {
     font-size: clamp(14px, 2vw, 18px);
-
     line-height: 1.7;
-
     color: #a3ff95;
-
     opacity: .9;
-
     letter-spacing: .5px;
 }
 
 @media(max-width:600px) {
-
     .form {
         flex-direction: column;
     }
@@ -369,103 +293,54 @@ footer {
 <main>
 
 <header>
-
-    <div class="kicker">
-        CANAL CRIPTOGRAFADO
-    </div>
-
-    <h1>
-        RAKYDIA
-    </h1>
-
+    <div class="kicker">CANAL CRIPTOGRAFADO</div>
+    <h1>RAKYDIA</h1>
 </header>
 
 <p class="riddle-hint">
-
-    // ARQUIVO #00-INIT
-
-    <br><br>
-
+    // ARQUIVO #00-INIT<br><br>
     O caminho começa onde o triângulo se fecha, a trindade solitária que dá início ao sinal. Logo em seguida, o abismo reflete a perfeição de uma queda que se dobra sobre si mesma, repetindo o mesmo ciclo elevado duas vezes consecutivas antes do silêncio. Mas a sequência de números não passa de um mecanismo cego; ela exige a voz do antigo imperador de Roma, aquele que ensinou os alfabetos a darem passos para trás e esconderem seus segredos entre as linhas do tempo. Digite a ordem dos fatos, convoque o nome da cifra e a verdade será revelada.
-
 </p>
 
 <section class="panel">
 
-    <div class="status">
+<div class="status">
+    <span class="dot"></span>
+    TRANSMISSÃO INTERCEPTADA // CIFRA ATIVA
+</div>
 
-        <span class="dot"></span>
+<div id="riddle" class="riddle locked"></div>
 
-        TRANSMISSÃO INTERCEPTADA //
-        CIFRA ATIVA
+<form id="decodeForm" class="form">
 
-    </div>
-
-    <div
-        id="riddle"
-        class="riddle locked"
-    ></div>
-
-    <form
-        id="decodeForm"
-        class="form"
+    <input
+        id="key"
+        autocomplete="off"
+        placeholder="ETAPA 1/4: DIGITE O PRIMEIRO DÍGITO..."
+        aria-label="Chave de descriptografia"
     >
 
-        <input
-            id="key"
-            autocomplete="off"
-            placeholder="ETAPA 1/4: DIGITE O PRIMEIRO DÍGITO..."
-            aria-label="Chave de descriptografia"
-        >
+    <button id="submit" type="submit">
+        VALIDAR
+    </button>
 
-        <button
-            id="submit"
-            type="submit"
-        >
-            VALIDAR
-        </button>
+</form>
 
-    </form>
-
-    <div
-        id="feedback"
-        class="feedback"
-    ></div>
+<div id="feedback" class="feedback"></div>
 
 </section>
 
 <footer>
-
-    <span>
-        SYS::???
-    </span>
-
-    <span>
-        ACCESSO // RESTRITO
-    </span>
-
+    <span>SYS::???</span>
+    <span>ACCESSO // RESTRITO</span>
 </footer>
 
 </main>
 
-
 <script>
 
-/*
-==========================================================
- TEXTO CRIPTOGRAFADO
-==========================================================
-*/
-
 const encryptedEncoded =
-"4oKaIFBST1RPQ09MTyBBVElWQURPOiBDT05FWMODTyBFU1RBQkVMRUNJREEg4oKaCgpPIG11bmRvIGV4dGVyaW9yIGRlc2FiYSBlbSBydcOubmFzICwgbWFzIG8gdmVyZGFkZWlybyBjb2xhcHNvIGFjb250ZWNlIGRvIGxhZG8gZGUgZGVudHJvLiBPIHF1ZSB2b2PDqiBmYXogcXVhbmRvIGFzIHBhcmVkZXMgZGEgc3VhIHByw7NwcmlhIG1lbnRlIHRlbmRlbSBhIHJ1aXI/IFZvY8OqIHNlIGVudHJlZ2EgYW8gY2FvcyBvdSBpbmljaWEgbyBzZXUgRXhwdXJnbz8KCk7DtnMgc29tb3MgbyBQcm90b2NvbG8gUmFreWRpYSAzOTkuIE7Do28gdmllbW9zIHBhcmEgc2VyIGFwZW5hcyBhIHRyaWxoYSBzb25vcmEgZGUgdW1hIGVyYSBkaXN0w7NwaWNhOyBuYXNjZW1vcyBwYXJhIHNlciBvIHNldSBwb250byBkZSBmdWdhLiBPIHNvbSBxdWUgZWNvYSBkbyBhYmlzbW8sIHVtYSB0cmF2ZXNzaWEgZW50cmUgYSBtYWlzIHByb2Z1bmRhIGVzY3VyaWTDo28gZSBvIGxpbWl0ZSBkYSByZWNvbnN0cnXDp8O3by4KCk1hcyBhcyBlbmdyZW5hZ2VucyBkZXN0ZSBwcm90b2NvbG8gc8O3IGZ1bmNpb25hbSBzZSBlc3RpdmVybW9zIGp1bnRvcy4gTsOjbyBidXNjYW1vcyBhcGVuYXMgb3V2aW50ZXMuIEJ1c2NhbW9zIGFsaWFkb3MuCgpBIG5vc3NhIEZyYXRlcm5pZGFkZSBlc3TDoSBjb252b2NhbmRvIHZvY8OqLgoKQXF1aSwgYSBtw7pzaWNhIMOpIGEgbm9zc2EgYXJtYSBkZSBjb21iYXRlIGNvbnRyYSBhIGFwYXRpYSBlIGEgZ2VuZXJvc2lkYWRlIMOpIG8gY29tcGFzc28gcXVlIGRpdGEgb3Mgbm9zc29zIHBhc3Nvcy4gT25kZSBvIHNpc3RlbWEgZmFsaGEsIGEgbm9zc2EgdW5pw6NvIHNlIG1hbmlmZXN0YSwgdHJhbnNmb3JtYW5kbyBvIHNvbSBlbSBzb2xpZGFyaWVkYWRlICBwYXJhIHF1ZW0gbWFpcyBwcmVjaXNhLgoKSXN0byBuw6NvIMOpIHVtIGNvbnZpdGUgcGFyYSBhc3Npc3Rpci4gw4kgdW1hIGNvbnZvY2HDp8OjbyBwYXJhIHBlcnRlbmNlci4KCkBwcjM5OV8=";
-
-
-/*
-==========================================================
- DECODIFICAÇÃO BASE64 UTF-8
-==========================================================
-*/
+"4oKaIFBST1RPQ09MTyBBVElWQURPOiBDT05FWMODTyBFU1RBQkVMRUNJREEg4oKaCgpPIG11bmRvIGV4dGVyaW9yIGRlc2FiYSBlbSBydcOubmFzICwgbWFzIG8gdmVyZGFkZWlybyBjb2xhcHNvIGFjb250ZWNlIGRvIGxhZG8gZGUgZGVudHJvLiBPIHF1ZSB2b2PDqiBmYXogcXVhbmRvIGFzIHBhcmVkZXMgZGEgc3VhIHByw7NwcmlhIG1lbnRlIHRlbmRlbSBhIHJ1aXI/IFZvY8OqIHNlIGVudHJlZ2EgYW8gY2FvcyBvdSBpbmljaWEgbyBzZXUgRXhwdXJnbz8KCk7DtnMgc29tb3MgbyBQcm90b2NvbG8gUmFreWRpYSAzOTkuIE7Do28gdmllbW9zIHBhcmEgc2VyIGFwZW5hcyBhIHRyaWxoYSBzb25vcmEgZGUgdW1hIGVyYSBkaXN0w7NwaWNhOyBuYXNjZW1vcyBwYXJhIHNlciBvIHNldSBwb250byBkZSBmdWdhLiBPIHNvbSBxdWUgZWNvYSBkbyBhYmlzbW8sIHVtYSB0cmF2ZXNzaWEgZW50cmUgYSBtYWlzIHByb2Z1bmRhIGVzY3VyaWR0w6NvIGUgbwgbbGltaXRlIGRhIHJlY29uc3RydcOnw6NvLgoK";
 
 function decodeBase64UTF8(base64Str) {
 
@@ -479,82 +354,49 @@ function decodeBase64UTF8(base64Str) {
         i < binaryString.length;
         i++
     ) {
-
         bytes[i] =
             binaryString.charCodeAt(i);
-
     }
 
     return new TextDecoder("utf-8").decode(bytes);
 }
 
-
-/*
-==========================================================
- TEXTO ORIGINAL
-==========================================================
-*/
-
 const encrypted =
     decodeBase64UTF8(encryptedEncoded);
-
-
-/*
-==========================================================
- CIFRA DE CESAR
-==========================================================
-*/
 
 function shiftChar(ch, shift) {
 
     const c = ch.charCodeAt(0);
 
-
-    // A-Z
-
     if (
         c >= 65 &&
         c <= 90
     ) {
-
         return String.fromCharCode(
             (c - 65 - shift + 26) % 26 + 65
         );
-
     }
-
-
-    // a-z
 
     if (
         c >= 97 &&
         c <= 122
     ) {
-
         return String.fromCharCode(
             (c - 97 - shift + 26) % 26 + 97
         );
-
     }
-
-
-    // 0-9
 
     if (
         c >= 48 &&
         c <= 57
     ) {
-
         return String.fromCharCode(
             (c - 48 - shift + 10) % 10 + 48
         );
-
     }
-
 
     return ch;
 }
-
 
 function caesar(text) {
 
@@ -565,9 +407,7 @@ function caesar(text) {
     ];
 
     let pos = 0;
-
     let out = '';
-
 
     for (
         const ch of Array.from(text)
@@ -589,63 +429,26 @@ function caesar(text) {
             out += ch;
 
         }
-
     }
-
 
     return out;
 }
 
-
 const cipherText =
     caesar(encrypted);
-
 
 document
     .getElementById('riddle')
     .textContent = cipherText;
 
-
-/*
-==========================================================
- CHAVES DO PROTOCOLO
-==========================================================
-
- Os valores abaixo são Base64.
-
- Não existe no código:
-
- 3
- 9
- cesar
-
- em texto aberto como chave.
-
- A quarta chave está codificada.
-==========================================================
-*/
-
 const encryptedKeys = [
-
     "Mw==",
-
     "OQ==",
-
     "OQ==",
-
     "Y2VzYXI="
-
 ];
 
-
 let currentStep = 0;
-
-
-/*
-==========================================================
- ELEMENTOS
-==========================================================
-*/
 
 const inputEl =
     document.getElementById('key');
@@ -656,13 +459,6 @@ const feedbackEl =
 const btnEl =
     document.getElementById('submit');
 
-
-/*
-==========================================================
- PROCESSAMENTO DO FORMULÁRIO
-==========================================================
-*/
-
 document
     .getElementById('decodeForm')
     .addEventListener(
@@ -671,44 +467,15 @@ document
 
             e.preventDefault();
 
-
-            /*
-            ------------------------------------------------
-            Entrada do usuário
-
-            lowerCase permite:
-
-            CESAR
-            Cesar
-            cesar
-            CeSaR
-
-            ------------------------------------------------
-            */
-
             const value =
                 inputEl.value
                     .trim()
                     .toLowerCase();
 
-
-            /*
-            ------------------------------------------------
-            Decodifica somente a chave da etapa atual
-            ------------------------------------------------
-            */
-
             const expectedValue =
                 decodeBase64UTF8(
                     encryptedKeys[currentStep]
                 ).toLowerCase();
-
-
-            /*
-            =================================================
-            CHAVE CORRETA
-            =================================================
-            */
 
             if (
                 value === expectedValue
@@ -717,13 +484,6 @@ document
                 currentStep++;
 
                 inputEl.value = '';
-
-
-                /*
-                ---------------------------------------------
-                Ainda existem etapas
-                ---------------------------------------------
-                */
 
                 if (
                     currentStep <
@@ -739,18 +499,6 @@ document
 
                     feedbackEl.className =
                         'feedback success';
-
-
-                    /*
-                    -----------------------------------------
-                    Não revelamos o nome da quarta chave.
-
-                    Também não existe "cesar" no código.
-
-                    Apenas sabemos que a última etapa
-                    é uma palavra-chave.
-                    -----------------------------------------
-                    */
 
                     if (
                         currentStep ===
@@ -777,16 +525,7 @@ document
 
                     inputEl.focus();
 
-                }
-
-
-                /*
-                =================================================
-                TODAS AS ETAPAS CONCLUÍDAS
-                =================================================
-                */
-
-                else {
+                } else {
 
                     feedbackEl.textContent =
                         'PROTOCOLO DESCRIPTOGRAFADO COM SUCESSO';
@@ -794,32 +533,21 @@ document
                     feedbackEl.className =
                         'feedback success';
 
-
                     inputEl.disabled = true;
 
                     btnEl.disabled = true;
 
-
                     const el =
                         document.getElementById('riddle');
-
 
                     el.classList.remove('locked');
 
                     el.textContent = '';
 
-
-                    /*
-                    ---------------------------------------------
-                    Efeito de digitação da mensagem
-                    ---------------------------------------------
-                    */
-
                     const characters =
                         Array.from(encrypted);
 
                     let i = 0;
-
 
                     const timer =
                         setInterval(
@@ -844,28 +572,16 @@ document
                             },
                             8
                         );
-
                 }
 
-            }
-
-
-            /*
-            =================================================
-            CHAVE INCORRETA
-            =================================================
-            */
-
-            else {
+            } else {
 
                 currentStep = 0;
 
                 inputEl.value = '';
 
-
                 inputEl.placeholder =
                     'ETAPA 1/4: DIGITE O PRIMEIRO DÍGITO...';
-
 
                 feedbackEl.textContent =
                     'SEQUÊNCIA INCORRETA // PROTOCOLO REINICIADO';
@@ -873,11 +589,8 @@ document
                 feedbackEl.className =
                     'feedback error';
 
-
                 inputEl.focus();
-
             }
-
         }
     );
 
